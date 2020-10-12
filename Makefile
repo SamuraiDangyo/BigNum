@@ -1,8 +1,8 @@
 # Definitions (-fsanitize=undefined,alignment,bounds,shift)
 
-CC=g++
+CC=clang++
 CCFLAGS=-O2 -Wall -pedantic -Wextra -DNDEBUG
-NAME=bignum.cpp
+NAME=main.cpp
 EXE=bignum
 INSTALLDIR=/usr/bin/
 
