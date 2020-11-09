@@ -30,21 +30,19 @@ namespace bignum {
 
 // Constexprs
 
-constexpr char k_name[] = "BigNum 0.01";
+constexpr char kName[] = "BigNum 1.0";
 
 // Functions
 
-const std::string BigNumber(long number) {
-  const bool sign = number < 0;
-  if (number < 0) number = -number;
-  std::string str = std::to_string(number), ret = "";
-  const size_t len = str.length();
-  for (size_t i = 0; i < len; i++) {
-    if (i && ((len - i) % 3 == 0)) ret += ",";
+const std::string Convert2(const std::string str) {
+  std::string ret = "";
+  const std::size_t len = str.length();
+  for (std::size_t i = 0; i < len; i++) {
+    if (i && ((len - i) % 3 == 0 && str[i - 1] != '-')) ret += ",";
     ret += str[i];
   }
-  return (sign ? "-" : "") + ret;
+  return ret;
 }
 
-void PrintHelp() {std::cout << k_name << "\nUsage: > bignum 4242" << std::endl;}
-void Convert(const std::string val) {std::cout << BigNumber(std::stol(val.length() > 17 ? "0" : val)) << std::endl;}}
+bool IsNumeric(const std::string str) {if (str == "-") return 0; for (std::size_t i = (str.length() && str[0] == '-') ? 1 : 0; i < str.length(); i++) {if (!std::isdigit(str[i])) return 0;} return 1;}
+const std::string Convert(const std::string str) {return IsNumeric(str) ? Convert2(str) : "?";}}

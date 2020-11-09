@@ -1,20 +1,7 @@
-# Definitions (-fsanitize=undefined,alignment,bounds,shift)
-
-CC=clang++
-CCFLAGS=-O2 -Wall -pedantic -Wextra -DNDEBUG
-NAME=main.cpp
-EXE=bignum
-INSTALLDIR=/usr/bin/
-
-# Targets
+CXX=clang++
+CXXFLAGS=-O2 -Wall -pedantic -Wextra -DNDEBUG
 
 all:
-	$(CC) $(CCFLAGS) $(NAME) -o $(EXE)
+	$(CXX) $(CXXFLAGS) main.cpp -o bignum
 
-strip:
-	strip ./$(EXE)
-
-clean:
-	rm -f $(EXE)*
-
-.PHONY: all strip clean
+.PHONY: all
