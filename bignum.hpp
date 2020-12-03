@@ -30,22 +30,34 @@ namespace bignum {
 
 // Constexprs
 
-const std::string kName = "BigNum 1.0";
+const std::string kName = "BigNum 1.1";
 
 // Functions
 
 bool IsNumeric(const std::string str) {
-  if (str == "-") return 0; for (std::size_t i = (str.length() && str[0] == '-') ? 1 : 0; i < str.length(); i++) {if (!std::isdigit(str[i])) return 0;} 
-  return 1;
+  if (str == "-") 
+    return false; 
+  
+  for (std::size_t i = (str.length() && str[0] == '-') ? 1 : 0; i < str.length(); i++) {
+    if (!std::isdigit(str[i])) 
+      return false;
+  }
+  
+  return true;
 }
 
-const std::string Convert(const std::string str) {
-  if (!IsNumeric(str)) return "?";
+const std::string Convert(const std::string& str) {
+  if (!IsNumeric(str)) 
+    return "?";
+
   std::string ret = "";
-  const std::size_t len = str.length();
+  const auto len = str.length();
+
   for (std::size_t i = 0; i < len; i++) {
-    if (i && ((len - i) % 3 == 0 && str[i - 1] != '-')) ret += ",";
+    if (i && ((len - i) % 3 == 0 && str[i - 1] != '-')) 
+      ret += ",";
     ret += str[i];
   }
+
   return ret;
 }}
